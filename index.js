@@ -1,4 +1,5 @@
 const fs = require('fs/promises');
+const path = require('path');
 
 const addText = async () => {
   await fs.appendFile('file.txt', '\nappendtext');
