@@ -1,30 +1,46 @@
 const fs = require('fs/promises');
 const path = require('path');
+const contacts = require('./db');
 
-const addText = async () => {
-  await fs.appendFile('file.txt', '\nappendtext');
-};
-// addText();
-
-const innerText = async () => {
-  const result = await fs.writeFile('file.txt', 'file');
-  //   console.log(result);
-};
-innerText();
-const readfile = async () => {
-  const data = await fs.readFile('file.txt', 'utf-8');
-  console.log(data);
-};
-readfile();
-
-// fs.readFile('file.txt')
-//   .then(data => console.log(data))
-//   .catch(error => console.log(error.message));
+// const contactsPath = path(__dirname, contacts.json);
 
 console.log('Welcome to Hell in NODE.js ');
 
-const contacts = require('./contacts');
-const { error } = require('console');
-const { appendFile } = require('fs');
+// const { Command } = require('commander');
+// const program = new Command();
+// program
+//   .option('-a, --action <type>', 'choose action')
+//   .option('-i, --id <type>', 'user id')
+//   .option('-n, --name <type>', 'user name')
+//   .option('-e, --email <type>', 'user email')
+//   .option('-p, --phone <type>', 'user phone');
 
-// console.log(contacts);
+// program.parse(process.argv);
+
+// const argv = program.opts();
+
+// TODO: рефакторить
+const invokeAction = async ({ action, id, name, email, phone }) => {
+  switch (action) {
+    case 'list':
+      const allContact = await contacts.getALL();
+      return allContact;
+
+    // case 'get':
+    //   // ... id
+    //   break;
+
+    // case 'add':
+    //   // ... name email phone
+    //   break;
+
+    // case 'remove':
+    //   // ... id
+    //   break;
+
+    default:
+      console.warn('\x1B[31m Unknown action type!');
+  }
+};
+
+invokeAction({ action: 'list' });
