@@ -1,6 +1,3 @@
-// const fs = require('fs/promises');
-// const path = require('path');
-// const contacts = require('./db/contacts');
 const { nanoid } = require('nanoid');
 const { Command } = require('commander');
 const contacts = require('./db');
